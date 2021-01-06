@@ -3,10 +3,10 @@ services:
   - docker
 
 before_install: #things to be done before rungging scripts in scripts section
-  - docker build -t amr24/react-test -f ./client/Dockerfile.dev ./client
+  - docker build -t react-test -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run -e CI=true amr24/react-test npm run test
+  - docker run -e CI=true react-test npm run test
 
 after_success: #on success will build images then push to docker hub
   - docker build -t amr24/multi-client ./client
