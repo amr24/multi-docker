@@ -9,9 +9,9 @@ script:
   - docker run -e CI=true amr24/react-test npm run test
 
 after_success: #on success will build images then push to docker hub
-  - docker build -t amr24/multi_client ./client
-  - docker build -t amr24/multi_nginx ./nginx
-  - docker build -t amr24/multi_server ./server
+  - docker build -t amr24/multi-client ./client
+  - docker build -t amr24/multi-nginx ./nginx
+  - docker build -t amr24/multi-server ./server
   - docker build -t amr24/multi-worker ./worker
 # log in to the docker CLI
   -  echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
