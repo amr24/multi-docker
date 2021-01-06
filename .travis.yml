@@ -3,21 +3,20 @@ services:
   - docker
 
 before_install: #things to be done before rungging scripts in scripts section
-  - docker build -t amr123/react-test -f ./client/Dockerfile.dev ./client
+  - docker build -t amr24/react-test -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run -e CI=true amr123/react-test npm run test
+  - docker run -e CI=true amr24/react-test npm run test
 
 after_success: #on success will build images then push to docker hub
-  - docker build -t amr123/multi_client ./client
-  - docker build -t amr123/multi_nginx ./nginx
-  - docker build -t amr123/multi_server ./server
-  - docker build -t amr123/multi-worker ./worker
+  - docker build -t amr24/multi_client ./client
+  - docker build -t amr24/multi_nginx ./nginx
+  - docker build -t amr24/multi_server ./server
+  - docker build -t amr24/multi-worker ./worker
 # log in to the docker CLI
   -  echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
 #Take those images and push them to docker hub
-  - docker push amr123/multi-client
-  - docker push amr123/multi-nginx
-  - docker push amr123/multi-server
-  - docker push amr123/multi-worker
-
+  - docker push amr24/multi-client
+  - docker push amr24/multi-nginx
+  - docker push amr24/multi-server
+  - docker push amr24/multi-worker
